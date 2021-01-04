@@ -32,7 +32,7 @@ exports.up = function (knex) {
 		})
 		.createTable("tasks", (t) => {
 			t.uuid("uuid").notNullable().unique().primary();
-			t.string("name").notNullable().unique();
+			t.string("name").notNullable();
 			t.string("description", 1000);
 		})
 		.createTable("assignments", (t) => {
@@ -47,7 +47,7 @@ exports.up = function (knex) {
 				.references("uuid")
 				.inTable("tasks")
 				.onUpdate("CASCADE")
-				.onDelete("SET NULL");
+				.onDelete("CASCADE");
 			t.boolean("complete").notNullable().defaultTo(false);
 			t.primary(["volunteer", "task"]);
 			t.unique(["volunteer", "task"]);
