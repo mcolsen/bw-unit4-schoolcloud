@@ -29,7 +29,7 @@ router.get("/:uuid", restrict("admin"), validate.taskUUID, (req, res) => {
 
 router.post("/", restrict("admin"), validate.newTask, (req, res) => {
 	db.addTask(req.body)
-		.then((r) => res.status(201).json(r))
+		.then((r) => res.status(201).json(r[0]))
 		.catch((e) => res.status(500).json(e.message));
 });
 

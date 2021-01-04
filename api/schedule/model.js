@@ -1,9 +1,6 @@
 const connect = require("../../data/connection");
 
 //	Helper functions
-const getVolunteerSchedule = (volUuid) =>
-	connect("schedule").where({ volunteer: volUuid });
-
 const mergeSlots = (schedule) => {
 	//	Merge open slots on a single volunteer's schedule
 	const { Interval } = require("luxon");
@@ -46,6 +43,9 @@ const mergeSlots = (schedule) => {
 	return promises;
 };
 
+const getVolunteerSchedule = (volUuid) =>
+	connect("schedule").where({ volunteer: volUuid });
+
 //	Exported functions for router and middleware
 const getUserUUID = (username) =>
 	connect("users")
@@ -62,7 +62,7 @@ const addSlot = (slot) => {
 		.insert({ ...slot, interval: slot.interval.toISO(), uuid: uuid() })
 		.then(() => {
 			return getVolunteerSchedule(slot.volunteer).then((schedule) => {
-				Promise.all(mergeSlots(schedule)).then(() =>
+				return Promise.all(mergeSlots(schedule)).then(() =>
 					getVolunteerSchedule(slot.volunteer)
 				);
 			});
