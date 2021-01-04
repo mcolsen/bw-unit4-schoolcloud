@@ -35,7 +35,7 @@ module.exports = (roles = defaultRoles) => {
 				}
 			});
 		} else {
-			res.status(401).json("token must be specified in authorization header");
+			res.status(401).json("Token must be specified in authorization header");
 		}
 	};
 };

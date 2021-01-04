@@ -1,6 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const middleware = require("./middlewares");
+const validate = require("./validation");
 const db = require("./model");
 
 const router = express.Router();
@@ -13,7 +13,7 @@ const createToken = (user) => {
 	return jwt.sign(payload, secret, options);
 };
 
-router.post("/register", middleware.register, (req, res) => {
+router.post("/register", validate.register, (req, res) => {
 	db.addUser(req.body)
 		.then(() =>
 			res.status(201).json({
@@ -24,7 +24,7 @@ router.post("/register", middleware.register, (req, res) => {
 		.catch((e) => res.status(500).json(e.message));
 });
 
-router.post("/login", middleware.login, (req, res) => {
+router.post("/login", validate.login, (req, res) => {
 	res.status(200).json({
 		message: `Welcome ${req.body.username}`,
 		token: createToken(req.body),
