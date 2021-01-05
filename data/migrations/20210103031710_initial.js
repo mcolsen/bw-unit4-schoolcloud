@@ -56,9 +56,9 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
 	return knex.schema
-		.dropTableIfExists("roles")
-		.dropTableIfExists("users")
-		.dropTableIfExists("schedule")
+		.dropTableIfExists("assignments")
 		.dropTableIfExists("tasks")
-		.dropTableIfExists("assignments");
+		.dropTableIfExists("schedule")
+		.dropTableIfExists("users")
+		.dropTableIfExists("roles");
 };

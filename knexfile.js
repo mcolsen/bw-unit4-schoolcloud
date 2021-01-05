@@ -1,4 +1,5 @@
-// Update with your config settings.
+//  Heroku database connection for production
+const pgConnection = `${process.env.DATABASE_URL}?ssl=true`;
 
 module.exports = {
 	development: {
@@ -11,40 +12,24 @@ module.exports = {
 			directory: "./data/migrations",
 		},
 		seeds: {
-			directory: "./data/seeds",
+			directory: "./data/seeds-dev",
 		},
 	},
-
-	/*   staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
- */
+	production: {
+		client: "pg",
+		version: "7.18.2",
+		useNullAsDefault: true,
+		connection: pgConnection,
+		pool: {
+			min: 2,
+			max: 10,
+		},
+		migrations: {
+			directory: "./data/migrations",
+			tableName: "knex_migrations",
+		},
+		seeds: {
+			directory: "./data/seeds-prod",
+		},
+	},
 };
