@@ -1,10 +1,22 @@
 # School Cloud Backend
 
-## Notes for Frontend Dev
+## Notes for Frontend / Unit 3
+
+### Deployed API URL
+
+`https://bw-unit4-schoolcloud.herokuapp.com/`
+
+### ISO interval format & country codes
+
+The server requires that certain requests include data formatted in specific ways.
+
+**[ISO 8601 intervals](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals)**: All of the schedule endpoints either require or return data in this format. The backend utilizes [Luxon](https://moment.github.io/luxon/) to make it easy to work with time intervals and other date and time data. While I'm partial to Luxon, the backend is agnostic about how the frontend handles this data as long as it is properly formatted by the time a request is sent to the server, and there are [other solutions](https://momentjs.com/docs/#/-project-status/recommendations/) that may be worth looking at too.
+
+**[ISO-3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)**: For endpoints that require it, country data must be formatted as an alpha-2 country code. A list of these codes, albeit without full country names, is included in this repository [here](https://github.com/mcolsen/bw-unit4-schoolcloud/blob/main/api/modules/country-codes.js).
 
 ### Running the server locally
 
-While I'm still putting on the finishing touches and getting the API ready for deployment, here are instructions for running the server on your local machine:
+If you would like to run the server locally for testing purposes, here are instructions:
 
 1. Clone this repository and navigate to the directory
 2. `echo "BCRYPT_ROUNDS=7\nJWT_SECRET=G0evoTTGYNp3RzfZb5DS7kXZnaqFPwjnEAVTWw4ue5nxAMt4Dc1ksw57QgPm" > .env`
@@ -17,14 +29,6 @@ While I'm still putting on the finishing touches and getting the API ready for d
    - This can be used to reset the database to its initial state when needed
 5. `yarn dev`
    - Start the server
-
-### ISO interval format & country codes
-
-The server requires that certain requests include data formatted in specific ways.
-
-**[ISO 8601 intervals](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals)**: All of the schedule endpoints either require or return data in this format. The backend utilizes [Luxon](https://moment.github.io/luxon/) to make it easy to work with time intervals and other date and time data. While I'm partial to Luxon, the backend is agnostic about how the frontend handles this data as long as it is properly formatted by the time a request is sent to the server, and there are [other solutions](https://momentjs.com/docs/#/-project-status/recommendations/) that may be worth looking at too.
-
-**[ISO-3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)**: For endpoints that require it, country data must be formatted as an alpha-2 country code. A list of these codes, albeit without full country names, is included in this repository [here](https://github.com/mcolsen/bw-unit4-schoolcloud/blob/main/api/modules/country-codes.js).
 
 ## Endpoints
 
