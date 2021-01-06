@@ -15,6 +15,19 @@ module.exports = {
 			directory: "./data/seeds-dev",
 		},
 	},
+	test: {
+		client: "sqlite3",
+		useNullAsDefault: true,
+		connection: {
+			filename: "./data/test.sqlite3",
+		},
+		migrations: {
+			directory: "./data/migrations",
+		},
+		seeds: {
+			directory: "./data/seeds-test",
+		},
+	},
 	production: {
 		client: "pg",
 		version: "7.18.2",

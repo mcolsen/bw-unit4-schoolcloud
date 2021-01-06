@@ -10,7 +10,8 @@
 		"dev": "export NODE_ENV=development && nodemon index.js",
 		"lint": "eslint .",
 		"format": "prettier . -w",
-		"clean": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+		"clean": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+		"test": "jest --watch"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
